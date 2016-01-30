@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var { View, Text, StyleSheet, TouchableHighlight, TextInput, Image } = React;
+var { View, Text, StyleSheet, TouchableHighlight, TextInput, Image, InteractionManager } = React;
 var DrawerLayout = require('react-native-drawer-layout');
 
 function increaseCounter() {
@@ -11,6 +11,13 @@ function increaseCounter() {
     });
     increaseCounter.call(this);
   }.bind(this), 100);
+}
+
+function doExpensiveOperation() {
+  var i;
+  for (i = 0; i < Math.pow(2, 23); i++) {
+    i * i;
+  }
 }
 
 var DrawerLayoutExample = React.createClass({
@@ -44,7 +51,10 @@ var DrawerLayoutExample = React.createClass({
 
     return (
       <DrawerLayout
-        onDrawerSlide={(e) => this.setState({drawerSlideOutput: JSON.stringify(e.nativeEvent)})}
+        onDrawerSlide={e => {
+          this.setState({drawerSlideOutput: JSON.stringify(e.nativeEvent)});
+          InteractionManager.runAfterInteractions(doExpensiveOperation);
+        }}
         onDrawerStateChanged={(e) => this.setState({drawerStateChangedOutput: JSON.stringify(e)})}
         drawerWidth={300}
         ref={(drawer) => { return this.drawer = drawer  }}
