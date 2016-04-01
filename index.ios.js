@@ -1,8 +1,15 @@
-'use strict';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ */
 
-var React = require('react-native');
-var { AppRegistry, } = React;
+import React, {
+  AppRegistry,
+  Component,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
 
-var DrawerLayoutExample = require('./DrawerLayoutExample');
-
+import DrawerLayoutExample from './DrawerLayoutExample';
 AppRegistry.registerComponent('DrawerLayoutHeavyLoadExample', () => DrawerLayoutExample);

@@ -1,7 +1,7 @@
 'use strict';
 
-var React = require('react-native');
-var { View, Text, StyleSheet, TouchableHighlight, TextInput, Image, InteractionManager } = React;
+import React from 'react-native';
+const { View, Text, StyleSheet, TouchableHighlight, TextInput, Image, InteractionManager } = React;
 var DrawerLayout = require('react-native-drawer-layout');
 
 function increaseCounter() {
@@ -14,10 +14,12 @@ function increaseCounter() {
 }
 
 function doExpensiveOperation() {
+  console.log('Starting expensive operation');
   var i;
   for (i = 0; i < Math.pow(2, 23); i++) {
     i * i;
   }
+  console.log('Finishing expensive operation');
 }
 
 var DrawerLayoutExample = React.createClass({
